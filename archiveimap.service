@@ -1,0 +1,6 @@
+[Unit]
+Description=Synchronize your remote Maildirs with the local repository (OfflineIMAP), archive them to backups and clean up older ones
+
+[Service]
+ExecStart=/usr/bin/archiveimap
+Type=oneshot
