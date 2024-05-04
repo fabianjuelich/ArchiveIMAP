@@ -59,7 +59,7 @@ def prune(archives, retention):
         if datetime.fromtimestamp(os.path.getctime(path)) < deadline:
             try:
                 os.remove(path)
-                print('Remove ' + archive)
+                print('Removed ' + archive)
             except:
                 print('Error while removing ' + path)
                 exit(1)
@@ -77,7 +77,7 @@ def main(args):
         prune(archives=archives, retention=retention)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Synchronize your remote Maildirs with the local repository (OfflineIMAP), archive them to backups and clean up older ones (run regularly with archiveimap.target and archiveimap.timer)')
+    parser = argparse.ArgumentParser(description='Synchronize your remote Maildirs with the local repository (OfflineIMAP), archive them in backups and clean up older ones (run regularly with systemd timer)')
     parser.add_argument('--config', type=str, default=os.path.join(os.path.dirname(__file__), '/etc/archiveimap/archiveimap.conf'), required=False, help='path to config file')
     parser.add_argument('--target', type=str, default=os.path.join(os.path.dirname(__file__), '/var/lib/archiveimap'), required=False, help='path to archive directory')
     args = parser.parse_args()
