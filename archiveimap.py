@@ -8,6 +8,8 @@ import time
 from datetime import datetime, timedelta
 import subprocess
 
+OFFLINEIMAP = 'offlineimap'
+
 def config(file):
     if os.path.exists(file):
         try:
@@ -21,7 +23,7 @@ def config(file):
         exit(1)
 
 def sync():
-    process = subprocess.run('offlineimap', shell=False)
+    process = subprocess.run(OFFLINEIMAP, shell=False)
     if process.returncode:
         exit(1)
 
