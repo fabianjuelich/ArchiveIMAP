@@ -4,23 +4,16 @@ Synchronize your remote Maildirs with the local repository (OfflineIMAP), archiv
 ### Install [OfflineIMAP](https://github.com/OfflineIMAP/offlineimap3)
 - See the official [Quick Start Guide](https://www.offlineimap.org/doc/quick_start.html).
 - If necessary, adjust the binary in the [Python script](./archiveimap.py). (Defaults to `offlineimap`)
+- If you haven't already, add the passwords in plain text to `remotepass=` of the `[Repository xyz]` section in __offlineimap.conf__ (or offlineimaprc) to make sure the script can be run non-interactively.
 
 ## Setup
-### Install ArchiveIMAP
+
+### Installation
 1. `git pull https://github.com/fabianjuelich/ArchiveIMAP.git`
 2. `cd ArchiveIMAP`
-3. `cp archiveimap.py /usr/bin/`
-4. `mkdir /etc/archiveimap`
-5. `cp archiveimap.conf /etc/archiveimap/`
-6. `mkdir /var/lib/archiveimap`
+3. `./install.sh`
+4. Check with `systemctl list-timers --all`
 
-### Activate regular autostart
-- If you haven't already, add the passwords in plain text to `remotepass=` in offlineimap.conf to make sure the script can be run non-interactively.
-1. `cp archiveimap.service /etc/systemd/system/`
-2. `cp archiveimap.timer /etc/systemd/system/`
-3. `systemctl enable archiveimap.timer`
-4. Check with`systemctl list-timers --all`
-
-### Configure
+### Configuration
 - Edit __/etc/archiveimap/archiveimap.conf__ to match your local Maildir repos and their storage time (m=minute, h=hour, d=day, w=week).
 - Edit __/etc/systemd/system/archiveimap.timer__ to fulfill your routine requirements. (Defaults to __12am__ with up to 30min delay)
